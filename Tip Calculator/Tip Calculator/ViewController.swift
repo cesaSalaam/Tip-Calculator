@@ -17,21 +17,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalBill: UILabel!
     
     let tips = [0.1,0.2,0.3]
+    
+    override func viewDidLoad() {
+        billField.becomeFirstResponder()
+    }
 
     @IBAction func calculateBill(_ sender: Any) {
         let bill = Double(billField.text!) ?? 0
-        let tip = bill * tips[tipController.selectedSegmentIndex]
-        let total = bill + tip
+        let tip = bill * tips[tipController.selectedSegmentIndex] as NSNumber
+        
+        let total = (bill + (bill * tips[tipController.selectedSegmentIndex])) as NSNumber
+        
        
+        //let newTotal = NumberFormatter.localizedString(from: NSNumber(value: total), number: NumberFormatter.Style.decimal)
+        
+        //let newTip = NumberFormatter.localizedString(from: NSNumber(value: tip), number: NumberFormatter.Style.decimal)
+        //print(newTip)
+        
         if (billField.text?.count)! < 8 {
-            totalBill.text = String(format: "$%.02f", total)
-            tipLabel.text = String(format: "$%.02f", tip)
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            totalBill.text = formatter.string(from: total)
+            tipLabel.text = formatter.string(from: tip)
+           // totalBill.text = String(format: "$%.02f", newTotal)
+            //tipLabel.text = String(format: "$%.02f", newTip)
         } else{
             billField.deleteBackward()
         }
         
     }
-    
     
     @IBAction func tapped(_ sender: Any) {
         view.endEditing(true)
