@@ -39,7 +39,7 @@ I did not face many challenges while completing this project.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2018] [Cesa Salaam]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
